@@ -1,0 +1,658 @@
+INFO:main.py:epochs100-lr0.001-batch_size64-ratio[0.8, 0.1]
+INFO:main.py:[128, 400, 400, 400, 400, 1]
+INFO:main.py:./dataset/latency_dataset_0.csv
+INFO:main.py:epoch 1-0 -----loss 1800.093506----- valid RMSE error 1812.040283
+INFO:main.py:epoch 1-5 -----loss 1787.227539----- valid RMSE error 1732.525879
+INFO:main.py:epoch 1-10 -----loss 1540.948853----- valid RMSE error 1341.012451
+INFO:main.py:epoch 1-15 -----loss 1218.643677----- valid RMSE error 587.649292
+INFO:main.py:epoch 2-0 -----loss 1649.566406----- valid RMSE error 1679.305908
+INFO:main.py:epoch 2-5 -----loss 1552.568604----- valid RMSE error 1687.698975
+INFO:main.py:epoch 2-10 -----loss 1683.480713----- valid RMSE error 1562.895996
+INFO:main.py:epoch 2-15 -----loss 1448.376099----- valid RMSE error 1392.867432
+INFO:main.py:epoch 3-0 -----loss 1251.432373----- valid RMSE error 1102.937866
+INFO:main.py:epoch 3-5 -----loss 311.375214----- valid RMSE error 55.660511
+INFO:main.py:epoch 3-10 -----loss 41.273888----- valid RMSE error 34.378029
+INFO:main.py:epoch 3-15 -----loss 36.269699----- valid RMSE error 26.999557
+INFO:main.py:epoch 4-0 -----loss 27.323389----- valid RMSE error 30.681904
+INFO:main.py:epoch 4-5 -----loss 40.893105----- valid RMSE error 40.547657
+INFO:main.py:epoch 4-10 -----loss 31.187981----- valid RMSE error 32.618961
+INFO:main.py:epoch 4-15 -----loss 35.245132----- valid RMSE error 28.596752
+INFO:main.py:epoch 5-0 -----loss 26.715378----- valid RMSE error 24.925613
+INFO:main.py:epoch 5-5 -----loss 30.387697----- valid RMSE error 36.740730
+INFO:main.py:epoch 5-10 -----loss 60.454014----- valid RMSE error 94.847595
+INFO:main.py:epoch 5-15 -----loss 43.854553----- valid RMSE error 27.016823
+INFO:main.py:epoch 6-0 -----loss 31.328947----- valid RMSE error 38.432926
+INFO:main.py:epoch 6-5 -----loss 21.265150----- valid RMSE error 18.722973
+INFO:main.py:epoch 6-10 -----loss 12.857876----- valid RMSE error 19.639320
+INFO:main.py:epoch 6-15 -----loss 17.367626----- valid RMSE error 25.126753
+INFO:main.py:epoch 7-0 -----loss 29.089470----- valid RMSE error 33.153526
+INFO:main.py:epoch 7-5 -----loss 47.790405----- valid RMSE error 23.124035
+INFO:main.py:epoch 7-10 -----loss 18.872774----- valid RMSE error 18.488441
+INFO:main.py:epoch 7-15 -----loss 15.931267----- valid RMSE error 20.976612
+INFO:main.py:epoch 8-0 -----loss 28.535458----- valid RMSE error 34.614212
+INFO:main.py:epoch 8-5 -----loss 16.766594----- valid RMSE error 21.015118
+INFO:main.py:epoch 8-10 -----loss 44.370876----- valid RMSE error 29.382191
+INFO:main.py:epoch 8-15 -----loss 21.992531----- valid RMSE error 24.018297
+INFO:main.py:epoch 9-0 -----loss 15.856929----- valid RMSE error 12.146639
+INFO:main.py:epoch 9-5 -----loss 18.050413----- valid RMSE error 26.550343
+INFO:main.py:epoch 9-10 -----loss 9.714985----- valid RMSE error 8.995293
+INFO:main.py:epoch 9-15 -----loss 28.609554----- valid RMSE error 35.412361
+INFO:main.py:epoch 10-0 -----loss 12.062766----- valid RMSE error 17.097866
+INFO:main.py:epoch 10-5 -----loss 18.842819----- valid RMSE error 26.429302
+INFO:main.py:epoch 10-10 -----loss 15.980984----- valid RMSE error 23.382778
+INFO:main.py:epoch 10-15 -----loss 9.392223----- valid RMSE error 8.130388
+INFO:main.py:epoch 11-0 -----loss 6.063517----- valid RMSE error 8.422786
+INFO:main.py:epoch 11-5 -----loss 5.371429----- valid RMSE error 7.170244
+INFO:main.py:epoch 11-10 -----loss 6.395609----- valid RMSE error 6.431407
+INFO:main.py:epoch 11-15 -----loss 20.944916----- valid RMSE error 43.398788
+INFO:main.py:epoch 12-0 -----loss 38.545868----- valid RMSE error 28.641647
+INFO:main.py:epoch 12-5 -----loss 6.490958----- valid RMSE error 7.776703
+INFO:main.py:epoch 12-10 -----loss 9.728925----- valid RMSE error 13.726225
+INFO:main.py:epoch 12-15 -----loss 11.189487----- valid RMSE error 10.325336
+INFO:main.py:epoch 13-0 -----loss 8.391102----- valid RMSE error 7.482846
+INFO:main.py:epoch 13-5 -----loss 5.655799----- valid RMSE error 11.479399
+INFO:main.py:epoch 13-10 -----loss 5.475634----- valid RMSE error 6.529385
+INFO:main.py:epoch 13-15 -----loss 7.683922----- valid RMSE error 9.104071
+INFO:main.py:epoch 14-0 -----loss 13.860727----- valid RMSE error 19.654324
+INFO:main.py:epoch 14-5 -----loss 25.193031----- valid RMSE error 28.664106
+INFO:main.py:epoch 14-10 -----loss 13.786339----- valid RMSE error 11.474176
+INFO:main.py:epoch 14-15 -----loss 21.786369----- valid RMSE error 24.538710
+INFO:main.py:epoch 15-0 -----loss 14.312866----- valid RMSE error 20.496254
+INFO:main.py:epoch 15-5 -----loss 14.482514----- valid RMSE error 12.636240
+INFO:main.py:epoch 15-10 -----loss 12.002228----- valid RMSE error 15.984052
+INFO:main.py:epoch 15-15 -----loss 7.579204----- valid RMSE error 8.957594
+INFO:main.py:epoch 16-0 -----loss 15.974110----- valid RMSE error 15.068282
+INFO:main.py:epoch 16-5 -----loss 10.314610----- valid RMSE error 16.747450
+INFO:main.py:epoch 16-10 -----loss 5.980723----- valid RMSE error 5.871717
+INFO:main.py:epoch 16-15 -----loss 11.545164----- valid RMSE error 17.432377
+INFO:main.py:epoch 17-0 -----loss 11.336891----- valid RMSE error 15.882590
+INFO:main.py:epoch 17-5 -----loss 9.309573----- valid RMSE error 11.826056
+INFO:main.py:epoch 17-10 -----loss 5.954722----- valid RMSE error 9.752133
+INFO:main.py:epoch 17-15 -----loss 6.775765----- valid RMSE error 8.235813
+INFO:main.py:epoch 18-0 -----loss 5.922947----- valid RMSE error 6.442218
+INFO:main.py:epoch 18-5 -----loss 18.812630----- valid RMSE error 26.070492
+INFO:main.py:epoch 18-10 -----loss 10.526052----- valid RMSE error 13.890864
+INFO:main.py:epoch 18-15 -----loss 3.428079----- valid RMSE error 6.924051
+INFO:main.py:epoch 19-0 -----loss 5.570651----- valid RMSE error 6.609457
+INFO:main.py:epoch 19-5 -----loss 6.966116----- valid RMSE error 13.447656
+INFO:main.py:epoch 19-10 -----loss 6.494312----- valid RMSE error 9.995422
+INFO:main.py:epoch 19-15 -----loss 13.485799----- valid RMSE error 15.650378
+INFO:main.py:epoch 20-0 -----loss 5.707307----- valid RMSE error 10.008301
+INFO:main.py:epoch 20-5 -----loss 5.195337----- valid RMSE error 7.392525
+INFO:main.py:epoch 20-10 -----loss 7.697190----- valid RMSE error 10.488110
+INFO:main.py:epoch 20-15 -----loss 4.542384----- valid RMSE error 6.038147
+INFO:main.py:epoch 21-0 -----loss 6.663297----- valid RMSE error 10.255910
+INFO:main.py:epoch 21-5 -----loss 6.467524----- valid RMSE error 10.633088
+INFO:main.py:epoch 21-10 -----loss 6.958508----- valid RMSE error 8.438541
+INFO:main.py:epoch 21-15 -----loss 10.281549----- valid RMSE error 16.282921
+INFO:main.py:epoch 22-0 -----loss 19.750443----- valid RMSE error 25.904434
+INFO:main.py:epoch 22-5 -----loss 7.674764----- valid RMSE error 9.061605
+INFO:main.py:epoch 22-10 -----loss 12.060431----- valid RMSE error 13.973532
+INFO:main.py:epoch 22-15 -----loss 6.374305----- valid RMSE error 8.329159
+INFO:main.py:epoch 23-0 -----loss 13.005560----- valid RMSE error 13.989614
+INFO:main.py:epoch 23-5 -----loss 3.855267----- valid RMSE error 8.573927
+INFO:main.py:epoch 23-10 -----loss 5.082229----- valid RMSE error 7.473913
+INFO:main.py:epoch 23-15 -----loss 4.938259----- valid RMSE error 10.924643
+INFO:main.py:epoch 24-0 -----loss 3.146862----- valid RMSE error 6.497893
+INFO:main.py:epoch 24-5 -----loss 4.832038----- valid RMSE error 6.228794
+INFO:main.py:epoch 24-10 -----loss 5.500659----- valid RMSE error 10.952372
+INFO:main.py:epoch 24-15 -----loss 3.832263----- valid RMSE error 6.574362
+INFO:main.py:epoch 25-0 -----loss 7.686374----- valid RMSE error 8.938113
+INFO:main.py:epoch 25-5 -----loss 13.062331----- valid RMSE error 18.142258
+INFO:main.py:epoch 25-10 -----loss 7.310552----- valid RMSE error 7.524876
+INFO:main.py:epoch 25-15 -----loss 2.952551----- valid RMSE error 8.312201
+INFO:main.py:epoch 26-0 -----loss 3.693535----- valid RMSE error 9.300652
+INFO:main.py:epoch 26-5 -----loss 2.877196----- valid RMSE error 7.053329
+INFO:main.py:epoch 26-10 -----loss 2.783287----- valid RMSE error 6.069187
+INFO:main.py:epoch 26-15 -----loss 2.461339----- valid RMSE error 6.651091
+INFO:main.py:epoch 27-0 -----loss 5.896782----- valid RMSE error 6.985409
+INFO:main.py:epoch 27-5 -----loss 17.820595----- valid RMSE error 26.124992
+INFO:main.py:epoch 27-10 -----loss 3.956921----- valid RMSE error 6.783849
+INFO:main.py:epoch 27-15 -----loss 4.733213----- valid RMSE error 11.738360
+INFO:main.py:epoch 28-0 -----loss 5.587372----- valid RMSE error 12.310402
+INFO:main.py:epoch 28-5 -----loss 3.676298----- valid RMSE error 6.392821
+INFO:main.py:epoch 28-10 -----loss 3.867795----- valid RMSE error 9.800333
+INFO:main.py:epoch 28-15 -----loss 6.034900----- valid RMSE error 8.254216
+INFO:main.py:epoch 29-0 -----loss 3.642670----- valid RMSE error 7.390356
+INFO:main.py:epoch 29-5 -----loss 8.747030----- valid RMSE error 17.636204
+INFO:main.py:epoch 29-10 -----loss 5.198009----- valid RMSE error 7.523197
+INFO:main.py:epoch 29-15 -----loss 2.007238----- valid RMSE error 6.895425
+INFO:main.py:epoch 30-0 -----loss 2.395110----- valid RMSE error 6.562371
+INFO:main.py:epoch 30-5 -----loss 4.192377----- valid RMSE error 10.545217
+INFO:main.py:epoch 30-10 -----loss 4.620121----- valid RMSE error 7.188228
+INFO:main.py:epoch 30-15 -----loss 10.855684----- valid RMSE error 14.975157
+INFO:main.py:epoch 31-0 -----loss 6.145848----- valid RMSE error 12.948514
+INFO:main.py:epoch 31-5 -----loss 7.268735----- valid RMSE error 10.496485
+INFO:main.py:epoch 31-10 -----loss 4.889438----- valid RMSE error 11.539320
+INFO:main.py:epoch 31-15 -----loss 3.590810----- valid RMSE error 5.898051
+INFO:main.py:epoch 32-0 -----loss 2.067456----- valid RMSE error 8.312122
+INFO:main.py:epoch 32-5 -----loss 1.377554----- valid RMSE error 7.156884
+INFO:main.py:epoch 32-10 -----loss 3.939539----- valid RMSE error 10.102485
+INFO:main.py:epoch 32-15 -----loss 5.498683----- valid RMSE error 7.389204
+INFO:main.py:epoch 33-0 -----loss 1.592687----- valid RMSE error 6.166522
+INFO:main.py:epoch 33-5 -----loss 1.958293----- valid RMSE error 6.686607
+INFO:main.py:epoch 33-10 -----loss 1.734375----- valid RMSE error 6.761809
+INFO:main.py:epoch 33-15 -----loss 3.438105----- valid RMSE error 9.544106
+INFO:main.py:epoch 34-0 -----loss 4.556421----- valid RMSE error 13.966057
+INFO:main.py:epoch 34-5 -----loss 7.944435----- valid RMSE error 8.611168
+INFO:main.py:epoch 34-10 -----loss 12.512194----- valid RMSE error 18.627630
+INFO:main.py:epoch 34-15 -----loss 9.616226----- valid RMSE error 12.555363
+INFO:main.py:epoch 35-0 -----loss 13.208714----- valid RMSE error 17.525909
+INFO:main.py:epoch 35-5 -----loss 6.099832----- valid RMSE error 13.342063
+INFO:main.py:epoch 35-10 -----loss 2.977890----- valid RMSE error 6.922462
+INFO:main.py:epoch 35-15 -----loss 4.503072----- valid RMSE error 13.514460
+INFO:main.py:epoch 36-0 -----loss 2.277445----- valid RMSE error 8.723625
+INFO:main.py:epoch 36-5 -----loss 2.013292----- valid RMSE error 7.049341
+INFO:main.py:epoch 36-10 -----loss 1.748713----- valid RMSE error 7.041785
+INFO:main.py:epoch 36-15 -----loss 2.984050----- valid RMSE error 9.450822
+INFO:main.py:epoch 37-0 -----loss 3.872910----- valid RMSE error 11.041620
+INFO:main.py:epoch 37-5 -----loss 1.704240----- valid RMSE error 6.606628
+INFO:main.py:epoch 37-10 -----loss 1.599336----- valid RMSE error 7.785870
+INFO:main.py:epoch 37-15 -----loss 1.915838----- valid RMSE error 8.882962
+INFO:main.py:epoch 38-0 -----loss 1.576563----- valid RMSE error 8.230695
+INFO:main.py:epoch 38-5 -----loss 1.386887----- valid RMSE error 7.026455
+INFO:main.py:epoch 38-10 -----loss 1.983010----- valid RMSE error 8.587728
+INFO:main.py:epoch 38-15 -----loss 3.645001----- valid RMSE error 6.426774
+INFO:main.py:epoch 39-0 -----loss 5.820706----- valid RMSE error 10.316233
+INFO:main.py:epoch 39-5 -----loss 3.485515----- valid RMSE error 9.628639
+INFO:main.py:epoch 39-10 -----loss 1.386728----- valid RMSE error 6.565055
+INFO:main.py:epoch 39-15 -----loss 1.984207----- valid RMSE error 6.623341
+INFO:main.py:epoch 40-0 -----loss 2.118593----- valid RMSE error 7.257056
+INFO:main.py:epoch 40-5 -----loss 5.509834----- valid RMSE error 14.977659
+INFO:main.py:epoch 40-10 -----loss 5.422116----- valid RMSE error 10.304955
+INFO:main.py:epoch 40-15 -----loss 5.082959----- valid RMSE error 14.156706
+INFO:main.py:epoch 41-0 -----loss 4.470954----- valid RMSE error 11.955900
+INFO:main.py:epoch 41-5 -----loss 2.832747----- valid RMSE error 7.623733
+INFO:main.py:epoch 41-10 -----loss 5.229993----- valid RMSE error 15.509504
+INFO:main.py:epoch 41-15 -----loss 17.070124----- valid RMSE error 21.345943
+INFO:main.py:epoch 42-0 -----loss 6.203568----- valid RMSE error 10.533960
+INFO:main.py:epoch 42-5 -----loss 5.020801----- valid RMSE error 14.413101
+INFO:main.py:epoch 42-10 -----loss 2.028993----- valid RMSE error 7.327295
+INFO:main.py:epoch 42-15 -----loss 1.678069----- valid RMSE error 8.680538
+INFO:main.py:epoch 43-0 -----loss 1.722117----- valid RMSE error 7.972377
+INFO:main.py:epoch 43-5 -----loss 0.898852----- valid RMSE error 8.064014
+INFO:main.py:epoch 43-10 -----loss 1.310498----- valid RMSE error 7.115732
+INFO:main.py:epoch 43-15 -----loss 1.531977----- valid RMSE error 8.294807
+INFO:main.py:epoch 44-0 -----loss 1.644916----- valid RMSE error 7.849118
+INFO:main.py:epoch 44-5 -----loss 1.093227----- valid RMSE error 7.483255
+INFO:main.py:epoch 44-10 -----loss 0.779636----- valid RMSE error 6.813209
+INFO:main.py:epoch 44-15 -----loss 1.272245----- valid RMSE error 6.851304
+INFO:main.py:epoch 45-0 -----loss 1.717661----- valid RMSE error 6.297828
+INFO:main.py:epoch 45-5 -----loss 1.928170----- valid RMSE error 9.649483
+INFO:main.py:epoch 45-10 -----loss 0.960003----- valid RMSE error 7.284310
+INFO:main.py:epoch 45-15 -----loss 0.943191----- valid RMSE error 7.062068
+INFO:main.py:epoch 46-0 -----loss 0.966216----- valid RMSE error 8.071888
+INFO:main.py:epoch 46-5 -----loss 0.730885----- valid RMSE error 6.332820
+INFO:main.py:epoch 46-10 -----loss 1.181108----- valid RMSE error 7.127279
+INFO:main.py:epoch 46-15 -----loss 0.819810----- valid RMSE error 7.022810
+INFO:main.py:epoch 47-0 -----loss 1.366136----- valid RMSE error 6.671061
+INFO:main.py:epoch 47-5 -----loss 2.670867----- valid RMSE error 14.084906
+INFO:main.py:epoch 47-10 -----loss 4.400773----- valid RMSE error 9.183912
+INFO:main.py:epoch 47-15 -----loss 4.987088----- valid RMSE error 15.187727
+INFO:main.py:epoch 48-0 -----loss 7.357442----- valid RMSE error 19.179159
+INFO:main.py:epoch 48-5 -----loss 2.650547----- valid RMSE error 8.104214
+INFO:main.py:epoch 48-10 -----loss 1.942880----- valid RMSE error 11.139656
+INFO:main.py:epoch 48-15 -----loss 3.914983----- valid RMSE error 10.232613
+INFO:main.py:epoch 49-0 -----loss 4.171294----- valid RMSE error 9.760521
+INFO:main.py:epoch 49-5 -----loss 3.971913----- valid RMSE error 12.446828
+INFO:main.py:epoch 49-10 -----loss 3.838395----- valid RMSE error 9.362570
+INFO:main.py:epoch 49-15 -----loss 1.440019----- valid RMSE error 9.342027
+INFO:main.py:epoch 50-0 -----loss 2.214974----- valid RMSE error 10.845821
+INFO:main.py:epoch 50-5 -----loss 1.699464----- valid RMSE error 7.923493
+INFO:main.py:epoch 50-10 -----loss 2.174556----- valid RMSE error 10.811074
+INFO:main.py:epoch 50-15 -----loss 2.462400----- valid RMSE error 7.497743
+INFO:main.py:epoch 51-0 -----loss 3.115665----- valid RMSE error 8.046973
+INFO:main.py:epoch 51-5 -----loss 4.791425----- valid RMSE error 12.724775
+INFO:main.py:epoch 51-10 -----loss 4.693893----- valid RMSE error 9.446614
+INFO:main.py:epoch 51-15 -----loss 3.699644----- valid RMSE error 12.216169
+INFO:main.py:epoch 52-0 -----loss 1.459023----- valid RMSE error 9.692131
+INFO:main.py:epoch 52-5 -----loss 0.674534----- valid RMSE error 7.001319
+INFO:main.py:epoch 52-10 -----loss 0.681030----- valid RMSE error 7.467457
+INFO:main.py:epoch 52-15 -----loss 0.694994----- valid RMSE error 7.542399
+INFO:main.py:epoch 53-0 -----loss 1.008671----- valid RMSE error 6.791733
+INFO:main.py:epoch 53-5 -----loss 2.272400----- valid RMSE error 10.117351
+INFO:main.py:epoch 53-10 -----loss 1.818246----- valid RMSE error 6.534624
+INFO:main.py:epoch 53-15 -----loss 2.375066----- valid RMSE error 11.836585
+INFO:main.py:epoch 54-0 -----loss 5.048817----- valid RMSE error 15.052798
+INFO:main.py:epoch 54-5 -----loss 5.017415----- valid RMSE error 10.875639
+INFO:main.py:epoch 54-10 -----loss 5.409801----- valid RMSE error 11.759111
+INFO:main.py:epoch 54-15 -----loss 0.885801----- valid RMSE error 6.811646
+INFO:main.py:epoch 55-0 -----loss 0.789692----- valid RMSE error 6.641124
+INFO:main.py:epoch 55-5 -----loss 0.785981----- valid RMSE error 7.986732
+INFO:main.py:epoch 55-10 -----loss 1.704799----- valid RMSE error 6.915030
+INFO:main.py:epoch 55-15 -----loss 1.405742----- valid RMSE error 9.981362
+INFO:main.py:epoch 56-0 -----loss 0.694118----- valid RMSE error 9.362085
+INFO:main.py:epoch 56-5 -----loss 0.845975----- valid RMSE error 6.561089
+INFO:main.py:epoch 56-10 -----loss 0.794081----- valid RMSE error 9.542958
+INFO:main.py:epoch 56-15 -----loss 1.237114----- valid RMSE error 7.159201
+INFO:main.py:epoch 57-0 -----loss 0.976589----- valid RMSE error 6.664409
+INFO:main.py:epoch 57-5 -----loss 0.550350----- valid RMSE error 7.928370
+INFO:main.py:epoch 57-10 -----loss 1.746359----- valid RMSE error 7.794950
+INFO:main.py:epoch 57-15 -----loss 4.030871----- valid RMSE error 14.052025
+INFO:main.py:epoch 58-0 -----loss 3.332662----- valid RMSE error 11.313419
+INFO:main.py:epoch 58-5 -----loss 4.553683----- valid RMSE error 8.934847
+INFO:main.py:epoch 58-10 -----loss 6.913039----- valid RMSE error 12.414320
+INFO:main.py:epoch 58-15 -----loss 4.322460----- valid RMSE error 9.480520
+INFO:main.py:epoch 59-0 -----loss 4.381224----- valid RMSE error 8.768816
+INFO:main.py:epoch 59-5 -----loss 7.136310----- valid RMSE error 18.293457
+INFO:main.py:epoch 59-10 -----loss 2.001024----- valid RMSE error 7.569966
+INFO:main.py:epoch 59-15 -----loss 0.708732----- valid RMSE error 8.578626
+INFO:main.py:epoch 60-0 -----loss 0.520063----- valid RMSE error 7.647955
+INFO:main.py:epoch 60-5 -----loss 0.674272----- valid RMSE error 8.149924
+INFO:main.py:epoch 60-10 -----loss 0.709558----- valid RMSE error 7.503836
+INFO:main.py:epoch 60-15 -----loss 0.987536----- valid RMSE error 8.917007
+INFO:main.py:epoch 61-0 -----loss 1.234889----- valid RMSE error 12.363932
+INFO:main.py:epoch 61-5 -----loss 4.015469----- valid RMSE error 8.998576
+INFO:main.py:epoch 61-10 -----loss 4.526217----- valid RMSE error 12.749653
+INFO:main.py:epoch 61-15 -----loss 1.546851----- valid RMSE error 7.737525
+INFO:main.py:epoch 62-0 -----loss 1.267726----- valid RMSE error 7.459509
+INFO:main.py:epoch 62-5 -----loss 0.432992----- valid RMSE error 7.871810
+INFO:main.py:epoch 62-10 -----loss 0.579585----- valid RMSE error 6.913660
+INFO:main.py:epoch 62-15 -----loss 1.241223----- valid RMSE error 10.532263
+INFO:main.py:epoch 63-0 -----loss 0.990696----- valid RMSE error 9.229156
+INFO:main.py:epoch 63-5 -----loss 1.178536----- valid RMSE error 6.382100
+INFO:main.py:epoch 63-10 -----loss 1.976279----- valid RMSE error 10.649850
+INFO:main.py:epoch 63-15 -----loss 3.489684----- valid RMSE error 6.626417
+INFO:main.py:epoch 64-0 -----loss 1.335241----- valid RMSE error 7.287940
+INFO:main.py:epoch 64-5 -----loss 1.313199----- valid RMSE error 9.272639
+INFO:main.py:epoch 64-10 -----loss 1.341231----- valid RMSE error 7.543234
+INFO:main.py:epoch 64-15 -----loss 0.929014----- valid RMSE error 9.572546
+INFO:main.py:epoch 65-0 -----loss 1.494131----- valid RMSE error 11.536634
+INFO:main.py:epoch 65-5 -----loss 1.434980----- valid RMSE error 7.661689
+INFO:main.py:epoch 65-10 -----loss 0.855202----- valid RMSE error 8.249674
+INFO:main.py:epoch 65-15 -----loss 3.145285----- valid RMSE error 8.777877
+INFO:main.py:epoch 66-0 -----loss 2.302510----- valid RMSE error 7.386932
+INFO:main.py:epoch 66-5 -----loss 1.181115----- valid RMSE error 11.463236
+INFO:main.py:epoch 66-10 -----loss 1.472170----- valid RMSE error 7.401875
+INFO:main.py:epoch 66-15 -----loss 0.926246----- valid RMSE error 9.310884
+INFO:main.py:epoch 67-0 -----loss 0.667738----- valid RMSE error 9.129175
+INFO:main.py:epoch 67-5 -----loss 0.662449----- valid RMSE error 7.516358
+INFO:main.py:epoch 67-10 -----loss 1.298203----- valid RMSE error 10.601152
+INFO:main.py:epoch 67-15 -----loss 1.795681----- valid RMSE error 7.783698
+INFO:main.py:epoch 68-0 -----loss 2.079739----- valid RMSE error 7.795866
+INFO:main.py:epoch 68-5 -----loss 3.796179----- valid RMSE error 14.055786
+INFO:main.py:epoch 68-10 -----loss 2.764249----- valid RMSE error 7.359946
+INFO:main.py:epoch 68-15 -----loss 4.636724----- valid RMSE error 10.897892
+INFO:main.py:epoch 69-0 -----loss 1.160434----- valid RMSE error 9.490118
+INFO:main.py:epoch 69-5 -----loss 0.403895----- valid RMSE error 6.875142
+INFO:main.py:epoch 69-10 -----loss 0.403878----- valid RMSE error 8.628751
+INFO:main.py:epoch 69-15 -----loss 0.563155----- valid RMSE error 7.551764
+INFO:main.py:epoch 70-0 -----loss 0.207920----- valid RMSE error 7.547770
+INFO:main.py:epoch 70-5 -----loss 0.435083----- valid RMSE error 8.047718
+INFO:main.py:epoch 70-10 -----loss 0.314571----- valid RMSE error 7.782720
+INFO:main.py:epoch 70-15 -----loss 0.638637----- valid RMSE error 7.928023
+INFO:main.py:epoch 71-0 -----loss 1.348416----- valid RMSE error 9.570101
+INFO:main.py:epoch 71-5 -----loss 1.549621----- valid RMSE error 6.792996
+INFO:main.py:epoch 71-10 -----loss 1.024198----- valid RMSE error 10.491910
+INFO:main.py:epoch 71-15 -----loss 1.578872----- valid RMSE error 7.833707
+INFO:main.py:epoch 72-0 -----loss 1.073812----- valid RMSE error 7.441624
+INFO:main.py:epoch 72-5 -----loss 1.282755----- valid RMSE error 10.229984
+INFO:main.py:epoch 72-10 -----loss 0.660219----- valid RMSE error 7.439697
+INFO:main.py:epoch 72-15 -----loss 1.799543----- valid RMSE error 10.639531
+INFO:main.py:epoch 73-0 -----loss 2.931829----- valid RMSE error 11.456424
+INFO:main.py:epoch 73-5 -----loss 1.191763----- valid RMSE error 6.743588
+INFO:main.py:epoch 73-10 -----loss 0.631781----- valid RMSE error 8.435785
+INFO:main.py:epoch 73-15 -----loss 0.582473----- valid RMSE error 6.485200
+INFO:main.py:epoch 74-0 -----loss 0.441287----- valid RMSE error 6.010715
+INFO:main.py:epoch 74-5 -----loss 0.787844----- valid RMSE error 9.455274
+INFO:main.py:epoch 74-10 -----loss 0.902484----- valid RMSE error 6.238829
+INFO:main.py:epoch 74-15 -----loss 0.271971----- valid RMSE error 8.077419
+INFO:main.py:epoch 75-0 -----loss 0.136564----- valid RMSE error 7.165300
+INFO:main.py:epoch 75-5 -----loss 0.251426----- valid RMSE error 8.309301
+INFO:main.py:epoch 75-10 -----loss 0.324617----- valid RMSE error 7.426006
+INFO:main.py:epoch 75-15 -----loss 0.305158----- valid RMSE error 7.686503
+INFO:main.py:epoch 76-0 -----loss 0.220513----- valid RMSE error 6.665172
+INFO:main.py:epoch 76-5 -----loss 0.155764----- valid RMSE error 7.240639
+INFO:main.py:epoch 76-10 -----loss 0.417378----- valid RMSE error 7.679063
+INFO:main.py:epoch 76-15 -----loss 0.197694----- valid RMSE error 8.533342
+INFO:main.py:epoch 77-0 -----loss 0.406401----- valid RMSE error 9.280543
+INFO:main.py:epoch 77-5 -----loss 0.401431----- valid RMSE error 6.940519
+INFO:main.py:epoch 77-10 -----loss 0.554542----- valid RMSE error 7.917410
+INFO:main.py:epoch 77-15 -----loss 0.215778----- valid RMSE error 7.538707
+INFO:main.py:epoch 78-0 -----loss 0.582990----- valid RMSE error 6.490863
+INFO:main.py:epoch 78-5 -----loss 1.398566----- valid RMSE error 11.166668
+INFO:main.py:epoch 78-10 -----loss 1.078111----- valid RMSE error 7.284702
+INFO:main.py:epoch 78-15 -----loss 1.105706----- valid RMSE error 10.451883
+INFO:main.py:epoch 79-0 -----loss 1.084246----- valid RMSE error 10.041595
+INFO:main.py:epoch 79-5 -----loss 1.164815----- valid RMSE error 7.175018
+INFO:main.py:epoch 79-10 -----loss 2.848802----- valid RMSE error 12.048982
+INFO:main.py:epoch 79-15 -----loss 2.662184----- valid RMSE error 8.115494
+INFO:main.py:epoch 80-0 -----loss 1.934582----- valid RMSE error 8.296951
+INFO:main.py:epoch 80-5 -----loss 2.392799----- valid RMSE error 11.293161
+INFO:main.py:epoch 80-10 -----loss 2.363496----- valid RMSE error 8.520435
+INFO:main.py:epoch 80-15 -----loss 2.459327----- valid RMSE error 11.863825
+INFO:main.py:epoch 81-0 -----loss 2.889241----- valid RMSE error 11.489182
+INFO:main.py:epoch 81-5 -----loss 1.513775----- valid RMSE error 8.406037
+INFO:main.py:epoch 81-10 -----loss 0.993654----- valid RMSE error 10.010156
+INFO:main.py:epoch 81-15 -----loss 1.979871----- valid RMSE error 8.347979
+INFO:main.py:epoch 82-0 -----loss 2.540017----- valid RMSE error 8.133512
+INFO:main.py:epoch 82-5 -----loss 4.041760----- valid RMSE error 14.259965
+INFO:main.py:epoch 82-10 -----loss 1.541529----- valid RMSE error 6.557813
+INFO:main.py:epoch 82-15 -----loss 0.801049----- valid RMSE error 9.184584
+INFO:main.py:epoch 83-0 -----loss 0.958746----- valid RMSE error 10.263678
+INFO:main.py:epoch 83-5 -----loss 0.439855----- valid RMSE error 8.216768
+INFO:main.py:epoch 83-10 -----loss 0.471533----- valid RMSE error 8.769715
+INFO:main.py:epoch 83-15 -----loss 0.396547----- valid RMSE error 6.688987
+INFO:main.py:epoch 84-0 -----loss 0.510969----- valid RMSE error 7.239480
+INFO:main.py:epoch 84-5 -----loss 0.425579----- valid RMSE error 8.793161
+INFO:main.py:epoch 84-10 -----loss 0.404208----- valid RMSE error 7.225358
+INFO:main.py:epoch 84-15 -----loss 0.340526----- valid RMSE error 8.324438
+INFO:main.py:epoch 85-0 -----loss 0.132856----- valid RMSE error 6.966415
+INFO:main.py:epoch 85-5 -----loss 0.219237----- valid RMSE error 7.149971
+INFO:main.py:epoch 85-10 -----loss 0.202527----- valid RMSE error 7.729646
+INFO:main.py:epoch 85-15 -----loss 0.249593----- valid RMSE error 7.852463
+INFO:main.py:epoch 86-0 -----loss 0.190545----- valid RMSE error 7.410641
+INFO:main.py:epoch 86-5 -----loss 0.120794----- valid RMSE error 7.684253
+INFO:main.py:epoch 86-10 -----loss 0.120930----- valid RMSE error 8.684893
+INFO:main.py:epoch 86-15 -----loss 0.102884----- valid RMSE error 8.057805
+INFO:main.py:epoch 87-0 -----loss 0.160498----- valid RMSE error 7.078646
+INFO:main.py:epoch 87-5 -----loss 0.146684----- valid RMSE error 8.523569
+INFO:main.py:epoch 87-10 -----loss 0.315690----- valid RMSE error 7.342992
+INFO:main.py:epoch 87-15 -----loss 0.363392----- valid RMSE error 8.851278
+INFO:main.py:epoch 88-0 -----loss 0.511463----- valid RMSE error 9.364423
+INFO:main.py:epoch 88-5 -----loss 0.848544----- valid RMSE error 7.190808
+INFO:main.py:epoch 88-10 -----loss 0.927306----- valid RMSE error 9.593492
+INFO:main.py:epoch 88-15 -----loss 0.512001----- valid RMSE error 7.057122
+INFO:main.py:epoch 89-0 -----loss 0.451268----- valid RMSE error 7.302875
+INFO:main.py:epoch 89-5 -----loss 0.694396----- valid RMSE error 9.484367
+INFO:main.py:epoch 89-10 -----loss 1.209192----- valid RMSE error 7.849138
+INFO:main.py:epoch 89-15 -----loss 1.058739----- valid RMSE error 9.489660
+INFO:main.py:epoch 90-0 -----loss 1.067461----- valid RMSE error 10.620219
+INFO:main.py:epoch 90-5 -----loss 2.899078----- valid RMSE error 8.429604
+INFO:main.py:epoch 90-10 -----loss 2.089135----- valid RMSE error 12.037066
+INFO:main.py:epoch 90-15 -----loss 1.415789----- valid RMSE error 8.141158
+INFO:main.py:epoch 91-0 -----loss 2.832336----- valid RMSE error 8.010347
+INFO:main.py:epoch 91-5 -----loss 4.444364----- valid RMSE error 14.246826
+INFO:main.py:epoch 91-10 -----loss 3.522440----- valid RMSE error 9.627083
+INFO:main.py:epoch 91-15 -----loss 4.330111----- valid RMSE error 11.043665
+INFO:main.py:epoch 92-0 -----loss 2.089426----- valid RMSE error 11.282375
+INFO:main.py:epoch 92-5 -----loss 1.138775----- valid RMSE error 8.118161
+INFO:main.py:epoch 92-10 -----loss 1.251503----- valid RMSE error 9.427348
+INFO:main.py:epoch 92-15 -----loss 1.730047----- valid RMSE error 7.480586
+INFO:main.py:epoch 93-0 -----loss 1.129156----- valid RMSE error 8.128927
+INFO:main.py:epoch 93-5 -----loss 0.800211----- valid RMSE error 9.764090
+INFO:main.py:epoch 93-10 -----loss 0.896734----- valid RMSE error 7.160290
+INFO:main.py:epoch 93-15 -----loss 0.674751----- valid RMSE error 9.700465
+INFO:main.py:epoch 94-0 -----loss 0.818020----- valid RMSE error 9.823505
+INFO:main.py:epoch 94-5 -----loss 0.662018----- valid RMSE error 7.393702
+INFO:main.py:epoch 94-10 -----loss 0.791753----- valid RMSE error 9.519235
+INFO:main.py:epoch 94-15 -----loss 0.338601----- valid RMSE error 7.322714
+INFO:main.py:epoch 95-0 -----loss 0.292678----- valid RMSE error 7.150000
+INFO:main.py:epoch 95-5 -----loss 0.149754----- valid RMSE error 8.218052
+INFO:main.py:epoch 95-10 -----loss 0.496640----- valid RMSE error 7.782747
+INFO:main.py:epoch 95-15 -----loss 0.194305----- valid RMSE error 8.542269
+INFO:main.py:epoch 96-0 -----loss 0.323158----- valid RMSE error 7.311326
+INFO:main.py:epoch 96-5 -----loss 0.699650----- valid RMSE error 6.878497
+INFO:main.py:epoch 96-10 -----loss 0.475201----- valid RMSE error 9.407021
+INFO:main.py:epoch 96-15 -----loss 0.829638----- valid RMSE error 6.966011
+INFO:main.py:epoch 97-0 -----loss 0.674230----- valid RMSE error 7.454497
+INFO:main.py:epoch 97-5 -----loss 0.464208----- valid RMSE error 9.404759
+INFO:main.py:epoch 97-10 -----loss 0.733767----- valid RMSE error 7.576550
+INFO:main.py:epoch 97-15 -----loss 0.797511----- valid RMSE error 8.914474
+INFO:main.py:epoch 98-0 -----loss 1.296576----- valid RMSE error 10.507039
+INFO:main.py:epoch 98-5 -----loss 1.276172----- valid RMSE error 8.035186
+INFO:main.py:epoch 98-10 -----loss 1.717750----- valid RMSE error 10.942748
+INFO:main.py:epoch 98-15 -----loss 1.655849----- valid RMSE error 7.666969
+INFO:main.py:epoch 99-0 -----loss 1.412219----- valid RMSE error 8.245118
+INFO:main.py:epoch 99-5 -----loss 2.916051----- valid RMSE error 12.082685
+INFO:main.py:epoch 99-10 -----loss 2.204946----- valid RMSE error 8.298289
+INFO:main.py:epoch 99-15 -----loss 2.143572----- valid RMSE error 11.522739
+INFO:main.py:epoch 100-0 -----loss 0.659972----- valid RMSE error 8.980726
+INFO:main.py:epoch 100-5 -----loss 0.184293----- valid RMSE error 7.640903
+INFO:main.py:epoch 100-10 -----loss 0.110004----- valid RMSE error 7.694653
+INFO:main.py:epoch 100-15 -----loss 0.136553----- valid RMSE error 8.003209
+INFO:main.py:outputs:[array([[42.231777],
+       [41.27185 ],
+       [36.30702 ],
+       [35.834698],
+       [42.294792],
+       [51.224422],
+       [49.687614],
+       [37.621956],
+       [49.30455 ],
+       [45.718094],
+       [41.18227 ],
+       [45.95987 ],
+       [32.86556 ],
+       [48.453705],
+       [43.3848  ],
+       [44.326557],
+       [38.273033],
+       [45.36042 ],
+       [39.788555],
+       [42.199375],
+       [37.887268],
+       [31.285042],
+       [47.19747 ],
+       [46.62619 ],
+       [37.301983],
+       [46.912018],
+       [34.31854 ],
+       [40.521034],
+       [46.630783],
+       [45.907433],
+       [37.326687],
+       [35.79176 ],
+       [40.135983],
+       [35.221676],
+       [41.816254],
+       [47.702034],
+       [42.051777],
+       [60.49625 ],
+       [39.137608],
+       [44.356213],
+       [52.762516],
+       [47.631523],
+       [41.758568],
+       [34.822723],
+       [34.543087],
+       [52.46877 ],
+       [36.877182],
+       [35.604153],
+       [38.224705],
+       [48.47146 ],
+       [47.76948 ],
+       [53.879673],
+       [35.128475],
+       [51.53674 ],
+       [48.087376],
+       [38.91341 ],
+       [44.35149 ],
+       [41.823483],
+       [51.733917],
+       [34.82372 ],
+       [46.749104],
+       [46.38015 ],
+       [44.886787],
+       [35.37851 ]], dtype=float32), array([[45.654015],
+       [44.839172],
+       [43.730965],
+       [41.048557],
+       [40.304115],
+       [44.572327],
+       [40.564877],
+       [36.433823],
+       [48.415333],
+       [50.509125],
+       [43.79104 ],
+       [49.95976 ],
+       [48.20006 ],
+       [36.442657],
+       [45.456432],
+       [35.83049 ],
+       [42.41522 ],
+       [42.1387  ],
+       [43.415585],
+       [38.56885 ],
+       [51.961456],
+       [44.41772 ],
+       [38.04747 ],
+       [44.817585],
+       [41.600258],
+       [41.984604],
+       [41.548893],
+       [33.200256],
+       [44.62486 ],
+       [54.006516],
+       [37.744938],
+       [37.105194],
+       [43.723503],
+       [49.135918],
+       [48.921947],
+       [49.898224],
+       [44.75548 ],
+       [47.247326],
+       [47.365543],
+       [37.012814],
+       [56.89239 ],
+       [46.99226 ],
+       [40.02713 ],
+       [41.942173],
+       [40.92431 ],
+       [50.19611 ],
+       [45.73379 ],
+       [37.73537 ],
+       [42.123356],
+       [47.721752],
+       [42.273075],
+       [37.216946],
+       [49.776745],
+       [55.666473],
+       [37.571983],
+       [36.3106  ],
+       [47.59688 ],
+       [39.58336 ],
+       [39.704937],
+       [39.20746 ],
+       [36.928974],
+       [40.725853],
+       [40.36366 ],
+       [48.609795]], dtype=float32)]
+INFO:main.py:labels[array([[41.51],
+       [40.65],
+       [35.26],
+       [35.89],
+       [45.56],
+       [52.04],
+       [51.65],
+       [35.02],
+       [54.89],
+       [44.61],
+       [38.55],
+       [43.2 ],
+       [31.6 ],
+       [51.38],
+       [40.84],
+       [42.12],
+       [39.17],
+       [43.07],
+       [38.88],
+       [38.56],
+       [35.9 ],
+       [31.81],
+       [46.23],
+       [43.98],
+       [34.67],
+       [49.56],
+       [34.03],
+       [41.22],
+       [48.28],
+       [46.02],
+       [34.01],
+       [39.34],
+       [41.74],
+       [32.32],
+       [40.96],
+       [43.98],
+       [39.34],
+       [49.02],
+       [37.2 ],
+       [38.11],
+       [50.59],
+       [45.09],
+       [42.2 ],
+       [31.11],
+       [33.35],
+       [50.55],
+       [33.83],
+       [40.01],
+       [40.41],
+       [49.45],
+       [46.1 ],
+       [47.55],
+       [37.67],
+       [51.34],
+       [48.34],
+       [37.44],
+       [45.84],
+       [39.72],
+       [49.25],
+       [38.4 ],
+       [45.06],
+       [46.04],
+       [43.15],
+       [34.75]], dtype=float32), array([[41.93],
+       [43.29],
+       [42.24],
+       [38.88],
+       [39.79],
+       [44.08],
+       [39.26],
+       [36.74],
+       [45.63],
+       [48.39],
+       [39.58],
+       [55.7 ],
+       [45.07],
+       [37.88],
+       [41.66],
+       [35.61],
+       [42.41],
+       [47.01],
+       [43.03],
+       [39.77],
+       [51.03],
+       [40.68],
+       [40.91],
+       [41.26],
+       [42.48],
+       [42.25],
+       [37.11],
+       [31.24],
+       [43.28],
+       [49.92],
+       [37.69],
+       [36.03],
+       [42.16],
+       [45.05],
+       [44.53],
+       [46.53],
+       [46.73],
+       [43.5 ],
+       [43.95],
+       [39.05],
+       [50.27],
+       [45.39],
+       [36.88],
+       [40.  ],
+       [39.  ],
+       [47.96],
+       [43.62],
+       [40.51],
+       [38.92],
+       [41.74],
+       [40.72],
+       [37.21],
+       [46.96],
+       [53.39],
+       [37.13],
+       [35.71],
+       [52.37],
+       [40.58],
+       [35.33],
+       [36.35],
+       [37.81],
+       [42.78],
+       [36.55],
+       [50.28]], dtype=float32)]
+INFO:main.py:RMSE 8.133423
