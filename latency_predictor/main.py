@@ -115,7 +115,7 @@ def test(net):
     plt.plot(range(20,50),range(20,50),color='red')
     plt.savefig('./logs/{}/result.jpg' .format(time_))
 
-EPOCHS = 70
+EPOCHS = 150
 BATCH_SIZE = 1000
 lr =0.003
 ratio = [0.8, 0.1]
