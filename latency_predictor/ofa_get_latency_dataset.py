@@ -48,7 +48,7 @@ if cuda_available:
     # path to the ImageNet dataset
     print("Please input the path to the ImageNet dataset.\n")
     # imagenet_data_path = './imagedata/'
-    imagenet_data_path = './imagenet_1_pic/'
+    imagenet_data_path = '../ofa/imagenet_codebase/dataset/mini_imagenet'
     # imagenet_data_path = '/home/lvbo1/lvbo_dir/00_dataset/imagenet'
 
     # if 'imagenet_data_path' is empty, download a subset of ImageNet containing 2000 images (~250M) for test
@@ -124,18 +124,22 @@ finder = EvolutionFinder(**params)
 population = []  # (validation, sample, latency) tuples
 child_pool = []
 efficiency_pool = []
-population_size = 50000
+population_size = 100000
 
 gpu_ava_delay = AverageMeter()
 cpu_ava_delay = AverageMeter()
 
-csv_f = open('./latency_dataset_2_50000.csv', 'w', encoding='utf-8', newline='')
+csv_f = open('./latency_dataset_2_10w.csv', 'w', encoding='utf-8', newline='')
 csv_writer = csv.writer(csv_f)
 csv_writer.writerow(
     ['arch_config', 'gpu latency', 'cpu latency',])
 # batch_size = 2
+resolution = [160, 176, 192, 208, 224]
 for _ in range(population_size):
     net_config, efficiency = finder.random_sample()
+    # for i in range(5):
+    # net_config['r'] = [resolution[i]]
+    print(net_config, efficiency)
     child_pool.append(net_config)
     efficiency_pool.append(efficiency)
 
@@ -174,7 +178,7 @@ for _ in range(population_size):
             # compute output
             start = datetime.datetime.now()
             output = subnet(images)
-            gpu_delay = (datetime.datetime.now() - start).total_seconds()*1000
+            gpu_delay = (datetime.datetime.now() - start).total_seconds() * 1000
             # measure accuracy and record loss
             # acc1, acc5 = accuracy(output, labels, topk=(1, 5))
             if i != 0:
@@ -184,13 +188,13 @@ for _ in range(population_size):
             # compute output
             start = datetime.datetime.now()
             output = subnet_cpu(images)
-            cpu_delay = (datetime.datetime.now() - start).total_seconds()*1000
+            cpu_delay = (datetime.datetime.now() - start).total_seconds() * 1000
             # measure accuracy and record loss
             # acc1, acc5 = accuracy(output, labels, topk=(1, 5))
             if i != 0:
                 cpu_ava_delay.update(cpu_delay)
 
-        csv_array = [net_config, round(gpu_ava_delay.avg,2), round(cpu_ava_delay.avg,2)]
+        csv_array = [net_config, round(gpu_ava_delay.avg, 2), round(cpu_ava_delay.avg, 2)]
         csv_writer.writerow(csv_array)
         csv_f.flush()
 
