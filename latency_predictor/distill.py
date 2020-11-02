@@ -7,7 +7,7 @@ df = pd.read_csv(PATH)
 cpu = df.iloc[:,-1].values
 gpu = df.iloc[:,-2].values
 
-max_cpu = max(cpu)-5
+max_cpu = max(cpu)-16
 min_cpu = min(cpu)+5
 num_dict = {}
 for i in range(int(min_cpu), int(max_cpu)):
@@ -15,16 +15,16 @@ for i in range(int(min_cpu), int(max_cpu)):
     num_dict[i] = 0  # use dict to count the number of each cpu time range
 print(num_dict)
 keys = list(num_dict)
-csv_f = open('./latency_dataset_2_test.csv', 'w', encoding='utf-8', newline='')
+csv_f = open('./dataset/latency_dataset_2_50000_distill.csv', 'w', encoding='utf-8', newline='')
 csv_writer =csv.writer(csv_f)
 csv_writer.writerow(
     ['arch_config', 'gpu latency', 'cpu latency',])
 
-for k,cpu_time in  enumerate(cpu):
+for k, cpu_time in  enumerate(cpu):
     detail = df.iloc[k]
     for i in range(len(keys)-1):
         if cpu_time>=keys[i] and cpu_time<keys[i+1]:
-            if num_dict[keys[i]]<100:
+            if num_dict[keys[i]]<300:
                 num_dict[keys[i]]+=1
                 csv_writer.writerow(detail)
                 csv_f.flush()

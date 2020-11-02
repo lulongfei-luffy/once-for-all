@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import logging
 
 os.environ['CUDA_VISIBLE_DEVICES'] = "0,1,2,3"
-device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
+device = torch.device("cuda:3" if torch.cuda.is_available() else 'cpu')
 def dataloader(ratio, batch_size, file_path):
     dataprocess = Dataprocess(file_path)
     all_feats, gpu, cpu = dataprocess.encode()
@@ -51,7 +51,6 @@ def train(net, epochs, lr):
                 print('epoch %d-%d-----loss %f----- valid RMSE error %f' % (j + 1,i, loss, RMSE))
 
     torch.save(net.state_dict(),'./logs/{}/net_params.pt'.format(time_))
-
     plt.figure()
     plt.plot(range((len(loss_ls))), loss_ls)
     # plt.savefig('./jpg/losses-{}'.format(time.strftime('%Y%m%d%H%M%S%S')))
@@ -61,23 +60,18 @@ def train(net, epochs, lr):
 def valid(net):
     _, valid_loader,_ = dataloader(ratio=ratio,batch_size=BATCH_SIZE,file_path=file_path)
     RMSE = 0
-    valid_num = 0
-    for i, data in enumerate(valid_loader):
+    i =0
+    for data in valid_loader:
         inputs, labels = data
         inputs = inputs.to(device)
         labels = labels.to(device)
         # print(inputs, labels)
-        valid_num += len(labels)
-        # net = latency_net(n_feature=128, n_hid0=400, n_hid1=400, n_hid2=400, n_hid3=400, output=1)
         pred_ = net(inputs)
         criterion = nn.MSELoss()
         loss = criterion(pred_, labels)
         RMSE += loss
-        # RMSE += (pred_ - labels)**2
-    # all =0
-    # for i in RMSE:
-    #     all+=i
-    return RMSE/(i+1)
+        i += 1
+    return RMSE/i
 
 def test(net):
     _, __, test_loader = dataloader(ratio=ratio, batch_size=BATCH_SIZE,file_path=file_path)
@@ -100,13 +94,14 @@ def test(net):
             RMSE+=loss
             num += len(label)
             # tem += (output - label)**2
+    logger.info('RMSE %f' % (RMSE / (k + 1)))
+    print('RMSE %f' % (RMSE / (k + 1)))
+
     for i, j in zip(outputs,labels):
         for m, n in zip(i, j):
             print(m, n)
-    logger.info('outputs:{}'.format(outputs))
-    logger.info('labels{}'.format( labels))
-    logger.info('RMSE %f' % (RMSE/(k+1)))
-    print('RMSE %f' % (RMSE/(k+1)))
+            logger.info('outputs:{}, labels:{}'.format(m, n))
+
     # draw
     plt.figure()
     plt.title('predicets & labels')
@@ -116,12 +111,12 @@ def test(net):
     plt.plot(range(20,50),range(20,50),color='red')
     plt.savefig('./logs/{}/result.jpg' .format(time_))
 
-EPOCHS = 150
-BATCH_SIZE = 1000
+EPOCHS = 100
+BATCH_SIZE = 128
 lr =0.001
 ratio = [0.8, 0.1]
-file_path = './dataset/latency_dataset_2_50000.csv'
-para = [128,400,400,400,400,1]
+file_path = './dataset/latency_dataset_2_50000_distill.csv'
+para = [128,64,32,32,16,1]
 
 time_ = time.strftime('%Y%m%d%H%M%S%S')
 if not os.path.exists('./logs/{}'.format(time_)):
@@ -133,15 +128,15 @@ logger = logging.getLogger('main.py')
 def main():
     net = model.latency_net(para)
     if torch.cuda.device_count()>1:
-        net = nn.DataParallel(net, device_ids=[0,1,2,3])
+        net = nn.DataParallel(net, device_ids=[3])
     net = model.latency_net(para).to(device)
     logger.info(time_)
     logger.info('epochs{}-lr{}-batch_size{}-ratio{}'.format(EPOCHS,lr,BATCH_SIZE,ratio))
     logger.info(para)
     logger.info(file_path)
-    logger.info('encode-spec2feats_v2')
+    logger.info('encode-spec2feats')
     train(net, epochs=EPOCHS, lr=lr)
-    valid(net)
+    # valid(net)
     test(net)
 
 if __name__ == '__main__':

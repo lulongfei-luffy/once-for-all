@@ -36,7 +36,7 @@ class Dataprocess():
             ex_list = copy.deepcopy(para['e'])
             d_list = copy.deepcopy(para['d'])
             r = copy.deepcopy(para['r'])[0]
-            feats = self.spec2feats_v2(ks_list, ex_list, d_list, r).reshape(1, -1)
+            feats = self.spec2feats(ks_list, ex_list, d_list, r).reshape(1, -1)
             gpu.append(sample[1])
             cpu.append(sample[2])
             all_feats.append(feats)

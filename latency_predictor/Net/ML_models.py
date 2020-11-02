@@ -3,7 +3,7 @@ from sklearn.svm import SVR
 from Net.data_process import Dataprocess
 # from main import dataloader
 import torch
-from sklearn.ensemble.gradient_boosting import GradientBoostingRegressor  # 集成算法
+from sklearn.ensemble import GradientBoostingRegressor  # 集成算法
 from sklearn.linear_model import BayesianRidge, LinearRegression, ElasticNet  # 批量导入要实现的回归算法
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.metrics import r2_score,mean_absolute_error, mean_squared_error
@@ -79,15 +79,5 @@ for model in model_dic:
     logger.info('MSE %f' % (RMSE/float(j+1)))
     logger.info('-'*80)
     print('-'*60)
-
-
-import numpy as np  # numpy库
-
-from sklearn.svm import SVR  # SVM中的回归算法
-
-from sklearn.model_selection import cross_val_score  # 交叉检验
-from sklearn.metrics import explained_variance_score, mean_absolute_error, mean_squared_error, r2_score  # 批量导入指标算法
-import pandas as pd  # 导入pandas
-import matplotlib.pyplot as plt  # 导入图形展示库
 
 
