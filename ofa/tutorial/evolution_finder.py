@@ -1,5 +1,5 @@
 import copy
-import random
+import numpy.random as random
 from tqdm import tqdm
 import numpy as np
 
@@ -21,7 +21,7 @@ class ArchManager:
 		e = []
 		ks = []
 		for i in range(self.num_stages):
-			d.append(random.choice(self.depths))
+			d.append(random.choice(self.depths,p=[0.333, 0.333, 0.334]))
 
 		for i in range(self.num_blocks):
 			e.append(random.choice(self.expand_ratios))
@@ -32,8 +32,9 @@ class ArchManager:
 			'ks': ks,
 			'e': e,
 			'd': d,
-			'r': [random.choice(self.resolutions)]
+			'r': [random.choice(self.resolutions,p=[0.2, 0.2, 0.2, 0.2,0.2])]
 		}
+
 
 		return sample
 

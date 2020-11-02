@@ -13,6 +13,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else 'cpu')
 def dataloader(ratio, batch_size, file_path):
     dataprocess = Dataprocess(file_path)
     all_feats, gpu, cpu = dataprocess.encode()
+
     totalnum = len(cpu)
     cpu = torch.tensor(cpu).reshape(totalnum, -1)
     gpu = torch.tensor(gpu).reshape(totalnum, -1)
@@ -117,7 +118,7 @@ def test(net):
 
 EPOCHS = 150
 BATCH_SIZE = 1000
-lr =0.003
+lr =0.001
 ratio = [0.8, 0.1]
 file_path = './dataset/latency_dataset_2_50000.csv'
 para = [128,400,400,400,400,1]
@@ -134,9 +135,11 @@ def main():
     if torch.cuda.device_count()>1:
         net = nn.DataParallel(net, device_ids=[0,1,2,3])
     net = model.latency_net(para).to(device)
+    logger.info(time_)
     logger.info('epochs{}-lr{}-batch_size{}-ratio{}'.format(EPOCHS,lr,BATCH_SIZE,ratio))
     logger.info(para)
     logger.info(file_path)
+    logger.info('encode-spec2feats_v2')
     train(net, epochs=EPOCHS, lr=lr)
     valid(net)
     test(net)

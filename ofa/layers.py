@@ -474,7 +474,7 @@ class MBInvertedConvLayer(MyModule):
                 ('act', build_activation(self.act_func, inplace=True)),
             ]))
 
-        pad = get_same_padding(self.kernel_size)
+        pad = get_same_padding(int(self.kernel_size))
         depth_conv_modules = [
             ('conv', nn.Conv2d(feature_dim, feature_dim, kernel_size, stride, pad, groups=feature_dim, bias=False)),
             ('bn', nn.BatchNorm2d(feature_dim)),

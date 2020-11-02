@@ -15,7 +15,7 @@ def construct_maps(keys):
     return d
 
 
-ks_map = construct_maps(keys=(3, 5, 7))
+ks_map = construct_maps(keys=(3, 5, 7))    #{3: 0, 5: 1, 7: 2}
 ex_map = construct_maps(keys=(3, 4, 6))
 dp_map = construct_maps(keys=(2, 3, 4))
 
@@ -82,3 +82,29 @@ class AccuracyPredictor:
 
         r_onehot[(r - 112) // 16] = 1
         return torch.Tensor(ks_onehot + ex_onehot + r_onehot)
+
+    @staticmethod
+    def spec2feats_v2(ks_list, ex_list, d_list, r):
+        # This function converts a network config to a feature vector (128-D).
+        start = 0
+        end = 4
+        for d in d_list:
+            for j in range(start+d, end):
+                ks_list[j] = 0
+                ex_list[j] = 0
+            start += 4
+            end += 4
+
+        # convert to onehot
+        ks_onehot = [0 for _ in range(120)]
+        # ex_onehot = [0 for _ in range(60)]
+        r_onehot = [0 for _ in range(8)]
+
+        for i in range(20):
+            start = i * 3
+            if ks_list[i] != 0:
+                ks_onehot[start + ks_map[ks_list[i]]] = 1
+                ks_onehot[start+3+ex_map[ex_list[i]]] = 1
+
+        r_onehot[(r - 112) // 16] = 1
+        return torch.Tensor(ks_onehot  + r_onehot)

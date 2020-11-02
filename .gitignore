@@ -8,7 +8,8 @@ cache/
 __pycache__/
 *.py[cod]
 *$py.class
-
+./ofa/imagenet_codebase/data
+./ofa/imagenet_codebase/dataset/mini_imagenet
 # C extensions
 *.so
 
