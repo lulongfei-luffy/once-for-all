@@ -115,8 +115,8 @@ EPOCHS = 100
 BATCH_SIZE = 128
 lr =0.001
 ratio = [0.8, 0.1]
-file_path = './dataset/latency_dataset_2_50000_distill.csv'
-para = [128,64,32,32,16,1]
+file_path = './dataset/latency_dataset_2_50000_temp.csv'
+para = [128,64,64,64,16,1]
 
 time_ = time.strftime('%Y%m%d%H%M%S%S')
 if not os.path.exists('./logs/{}'.format(time_)):
