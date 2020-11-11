@@ -160,6 +160,8 @@ for _ in range(population_size):
     assert len(net_config['ks']) == 20 and len(net_config['e']) == 20 and len(net_config['d']) == 5
     ofa_network.set_active_subnet(ks=net_config['ks'], d=net_config['d'], e=net_config['e'])
     subnet = ofa_network.get_active_subnet().to(device)
+
+    
     # print('==================={%s}===============' % net_config)
     # calib_bn(subnet, imagenet_data_path, net_config['r'][0], batch_size)
 
@@ -178,6 +180,7 @@ for _ in range(population_size):
             # compute output
             start = datetime.datetime.now()
             output = subnet(images)
+            print('output:',output)
             gpu_delay = (datetime.datetime.now() - start).total_seconds() * 1000
             # measure accuracy and record loss
             # acc1, acc5 = accuracy(output, labels, topk=(1, 5))
