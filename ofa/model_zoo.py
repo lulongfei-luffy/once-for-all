@@ -5,7 +5,7 @@
 import json
 import torch
 import torch.nn as nn
-# from layers import *
+# from layers import *=
 from ofa.layers import MyModule, ZeroLayer, set_layer_from_config, MBInvertedConvLayer
 from ofa.utils import MyNetwork, download_url
 
@@ -238,5 +238,5 @@ def ofa_net(net_id, pretrained=True):
         init = torch.load(
             download_url(url_base + net_id, model_dir='.torch/ofa_nets'),
             map_location='cpu')['state_dict']
-        net.load_state_dict(init)
+        # net.load_state_dict(init)
     return net

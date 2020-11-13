@@ -8,12 +8,13 @@ __all__ = ['EvolutionFinder']
 
 class ArchManager:
 	def __init__(self):
-		self.num_blocks = 20
-		self.num_stages = 5
+		self.num_blocks = 40
+		self.num_stages = 10
 		self.kernel_sizes = [3, 5, 7]
 		self.expand_ratios = [3, 4, 6]
 		self.depths = [2, 3, 4]
-		self.resolutions = [160, 176, 192, 208, 224]
+		# self.resolutions = [160, 176, 192, 208, 224]
+		self.resolutions = [160, 240, 320,360,400]
 
 	def random_sample(self):
 		sample = {}
@@ -111,9 +112,10 @@ class EvolutionFinder:
 		constraint = self.efficiency_constraint
 		while True:
 			sample = self.arch_manager.random_sample()
-			efficiency = self.efficiency_predictor.predict_efficiency(sample)
-			if efficiency <= constraint:
-				return sample, efficiency
+			# efficiency = self.efficiency_predictor.predict_efficiency(sample)
+			# if efficiency <= constraint:
+			efficiency = 0.0
+			return sample, efficiency
 
 	def mutate_sample(self, sample):
 		constraint = self.efficiency_constraint

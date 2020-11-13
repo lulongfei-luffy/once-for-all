@@ -46,6 +46,7 @@ parser.add_argument(
     help='OFA networks')
 
 args = parser.parse_args()
+
 if args.gpu == 'all':
     device_list = range(torch.cuda.device_count())
     args.gpu = ','.join(str(_) for _ in device_list)

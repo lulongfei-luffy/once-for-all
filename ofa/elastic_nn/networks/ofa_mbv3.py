@@ -14,7 +14,11 @@ from ofa.imagenet_codebase.utils import make_divisible, int2list
 
 
 class OFAMobileNetV3(MobileNetV3):
-
+    """
+    et = OFAMobileNetV3(
+            dropout_rate=0, width_mult_list=1.2, ks_list=[3, 5, 7], expand_ratio_list=[3, 4, 6], depth_list=[2, 3, 4],
+        )
+    """
     def __init__(self, n_classes=1000, bn_param=(0.1, 1e-5), dropout_rate=0.1, base_stage_width=None,
                  width_mult_list=1.0, ks_list=3, expand_ratio_list=6, depth_list=4):
 
@@ -29,8 +33,8 @@ class OFAMobileNetV3(MobileNetV3):
         self.expand_ratio_list.sort()
         self.depth_list.sort()
 
-        base_stage_width = [16, 24, 40, 80, 112, 160, 960, 1280]
-
+        # base_stage_width = [16, 24, 40, 80, 112, 160, 960, 1280]
+        base_stage_width = [16, 24, 40, 80, 112, 160, 24, 40, 80, 112, 160,  960, 1280]
         final_expand_width = [
             make_divisible(base_stage_width[-2] * max(self.width_mult_list), 8) for _ in self.width_mult_list
         ]
@@ -38,15 +42,20 @@ class OFAMobileNetV3(MobileNetV3):
             make_divisible(base_stage_width[-1] * max(self.width_mult_list), 8) for _ in self.width_mult_list
         ]
 
-        stride_stages = [1, 2, 2, 2, 1, 2]
-        act_stages = ['relu', 'relu', 'relu', 'h_swish', 'h_swish', 'h_swish']
-        se_stages = [False, False, True, False, True, True]
+        # stride_stages = [1, 2, 2, 2, 1, 2]
+        # act_stages = ['relu', 'relu', 'relu', 'h_swish', 'h_swish', 'h_swish']
+        # se_stages = [False, False, True, False, True, True]
+
+        stride_stages = [1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2]
+        act_stages = ['relu', 'relu', 'relu', 'h_swish', 'h_swish', 'h_swish','relu', 'relu', 'h_swish', 'h_swish', 'h_swish']
+        se_stages = [False, False, True, False, True, True, False, True, False, True, True]
         if depth_list is None:
             n_block_list = [1, 2, 3, 4, 2, 3]
             self.depth_list = [4, 4]
             print('Use MobileNetV3 Depth Setting')
         else:
-            n_block_list = [1] + [max(self.depth_list)] * 5
+            n_block_list = [1] + [max(self.depth_list)] * 10  # depth_list = [2,3,4]
+            # [1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4]
         width_list = []
         for base_width in base_stage_width[:-2]:
             width = [make_divisible(base_width * width_mult, 8) for width_mult in self.width_mult_list]

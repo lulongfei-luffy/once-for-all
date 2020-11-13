@@ -141,6 +141,7 @@ def locate_files(data_paths, filenames, err_msg=""):
 # Simple helper data class that's a little nicer to use than a 2-tuple.
 class HostDeviceMem(object):
     def __init__(self, host_mem, device_mem):
+        # Within this context, host_mom means the cpu memory and device means the GPU memory
         self.host = host_mem
         self.device = device_mem
 
@@ -157,6 +158,9 @@ def allocate_buffers(engine):
     bindings = []
     stream = cuda.Stream()
     for binding in engine:
+        # print(engine.get_binding_shape(binding))
+        # print(engine.get_binding_dtype(binding))
+        # print()
         size = trt.volume(engine.get_binding_shape(binding)) * engine.max_batch_size
         dtype = trt.nptype(engine.get_binding_dtype(binding))
         # Allocate host and device buffers

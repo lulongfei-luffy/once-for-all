@@ -129,7 +129,7 @@ population_size = 100000
 gpu_ava_delay = AverageMeter()
 cpu_ava_delay = AverageMeter()
 
-csv_f = open('./latency_dataset_2_10w.csv', 'w', encoding='utf-8', newline='')
+csv_f = open('./dataset/latency_dataset_1w.csv', 'w', encoding='utf-8', newline='')
 csv_writer = csv.writer(csv_f)
 csv_writer.writerow(
     ['arch_config', 'gpu latency', 'cpu latency',])
@@ -157,7 +157,7 @@ for _ in range(population_size):
     criterion = nn.CrossEntropyLoss().to(device)
 
     assert 'ks' in net_config and 'd' in net_config and 'e' in net_config
-    assert len(net_config['ks']) == 20 and len(net_config['e']) == 20 and len(net_config['d']) == 5
+    assert len(net_config['ks']) == 40 and len(net_config['e']) == 40 and len(net_config['d']) == 10
     ofa_network.set_active_subnet(ks=net_config['ks'], d=net_config['d'], e=net_config['e'])
     subnet = ofa_network.get_active_subnet().to(device)
 
@@ -180,7 +180,6 @@ for _ in range(population_size):
             # compute output
             start = datetime.datetime.now()
             output = subnet(images)
-            print('output:',output)
             gpu_delay = (datetime.datetime.now() - start).total_seconds() * 1000
             # measure accuracy and record loss
             # acc1, acc5 = accuracy(output, labels, topk=(1, 5))
