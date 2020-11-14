@@ -1,5 +1,9 @@
+import math
 import time
 from os.path import join
+
+import numpy
+
 from LSTM import lstm_model, variable_lstm
 from Net.data_process import *
 import argparse
@@ -8,17 +12,19 @@ print(torch.__version__)
 import torch.nn as nn
 import logging
 import os
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+
 from matplotlib import pyplot as plt
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2,3"
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 time_ = time.strftime('%Y%m%d%H%M%S%S')
 parser = argparse.ArgumentParser()
 parser.add_argument('-Epochs', '--epochs', help='trainging epochs', type=int,  default=130)
-parser.add_argument('-bs','--batch_size',type=int,default=256)
+parser.add_argument('-bs','--batch_size',type=int,default=64)
 parser.add_argument('-lr','--learning_rate',type=float,default=0.001)
 parser.add_argument('-ratio','--ratio',help='the ratio of train_data and valid_data',type=list,default=[0.8,0.1])
-parser.add_argument('-file_path',type=str, help='dataset file path', default='./dataset/latency_dataset_2_50000_temp.csv')
+parser.add_argument('-file_path',type=str, help='dataset file path', default='./dataset/latency_dataset_tr_1w_resolution.csv')
 parser.add_argument('-input_size', type=int, default=3)
 parser.add_argument('--hidden_size',type=int, default=128)
 parser.add_argument('-output_size',type=int, default=1)
@@ -108,29 +114,49 @@ def test(net,test_loader):
             outputs.append(output.reshape([-1,1]).cpu().numpy())
             labels.append(label.reshape([-1,1]).cpu().numpy())
 
-            MSE+=loss
-            num += len(label)
-    logger.info('MSE %f' % (MSE / (k + 1)))
-    print('MSE %f' % (MSE / (k + 1)))
 
-    relative_MSE = 0
+    # MSE
+
+    # MAPE
+    MAPE = 0
     count = 0
+    out_mean = numpy.mean(outputs)
+    lab_mean = numpy.mean(labels)
+    var_out, var_lab = 0., 0.
+    SSR =0.
     for i, j in zip(outputs,labels):
-        for m, n in zip(i, j):
+        for out, lab in zip(i, j):
             # print(m, n)
-            logger.info('outputs:{}, labels:{}'.format(m, n))
-            relative_MSE += (m[0]/n[0] - 1)**2
+            SSR += (out[0]-out_mean)*(lab[0]-lab_mean)
+            var_out += (out[0]-out_mean)**2
+            var_lab =(lab[0]- lab_mean)**2
+            logger.info('outputs:%.3f, labels:%.3f' %(out[0], lab[0]))
+            MAPE += abs(out[0]/lab[0] - 1)
             count += 1
-    relative_MSE /= count
-    print('relative_MSE:{}'.format(relative_MSE))
+    MAPE /= count
+    SST = math.sqrt(var_out*var_lab)
+    print('r: {}'.format(SSR/SST))
+
+    print('MSE: {}'.format(mean_squared_error(labels[0], outputs[0])))
+    print('MAPE: {}'.format(MAPE))
+    print('MAE: {}'.format(mean_absolute_error(labels[0],outputs[0])))
+    print('R^2: {}'.format(r2_score(labels[0],outputs[0])))
+
+    logger.info('MSE: {}'.format(mean_squared_error(labels[0], outputs[0])))
+    logger.info('MAPE: {}'.format(MAPE))
+    logger.info('MAE: {}'.format(mean_absolute_error(labels[0],outputs[0])))
+    logger.info('R^2: {}'.format(r2_score(labels[0],outputs[0])))
+    logger.info('r: {}'.format(SSR/SST))
+
+    #
     plt.figure()
     plt.title('predicets & labels')
     plt.xlabel('predict')
     plt.ylabel('label')
     plt.scatter(outputs, labels)
-    plt.xlim(20,70)
-    plt.ylim(20,70)
-    plt.plot(range(20, 70), range(20, 70), color='red')
+    # plt.xlim(20,70)
+    # plt.ylim(20,70)
+    plt.plot(range(0, 5), range(0, 5), color='red')
 
     plt.text(45,65,'relative_MSE: %.4f' %MSE, ha='center',va='top')
     # plt.text(45, 45, 'MSE:{}'.format(MSE), ha='center', va='top')
@@ -143,7 +169,7 @@ def test(net,test_loader):
     plt.ylim(-1,3)
     relative_value = [out / lab for out, lab in zip(outputs, labels)]
     plt.scatter(range(len(relative_value) * args.batch_size), relative_value)
-    plt.text(len(relative_value) * args.batch_size/2, 2.5, 'relative_MSE: %.4f' %(relative_MSE), ha='center', va='top')
+    plt.text(len(relative_value) * args.batch_size/2, 2.5, 'relative_MSE: %.4f' %(MAPE), ha='center', va='top')
     plt.savefig(join(logfile, 'relative result.jpg'))
 
 def main():

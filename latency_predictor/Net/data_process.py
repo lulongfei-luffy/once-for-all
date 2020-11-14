@@ -41,7 +41,7 @@ class Dataprocess():
             d_list = copy.deepcopy(para['d'])
             d_lists.append(d_list)
             r = copy.deepcopy(para['r'])[0]
-            feats= self.spec2feats_var_lstm(ks_list, ex_list, d_list, r)
+            feats= self.spec2feats(ks_list, ex_list, d_list, r)
             gpu.append(sample[1])
             cpu.append(sample[2])
             all_feats.append(feats)
@@ -52,7 +52,7 @@ class Dataprocess():
 
 
     @staticmethod
-    def spec2feats(self, ks_list, ex_list, d_list, r):
+    def spec2feats(ks_list, ex_list, d_list, r):
         # This function converts a network config to a feature vector (128-D).
         start = 0
         end = 4
@@ -64,18 +64,18 @@ class Dataprocess():
             end += 4
 
         # convert to onehot
-        ks_onehot = [0 for _ in range(60)]
-        ex_onehot = [0 for _ in range(60)]
-        r_onehot = [0 for _ in range(8)]
+        ks_onehot = [0 for _ in range(120)]
+        ex_onehot = [0 for _ in range(120)]
+        r_onehot = [0 for _ in range(16)]
 
-        for i in range(20):
+        for i in range(40):
             start = i * 3
             if ks_list[i] != 0:
                 ks_onehot[start + ks_map[ks_list[i]]] = 1
             if ex_list[i] != 0:
                 ex_onehot[start + ex_map[ex_list[i]]] = 1
 
-        r_onehot[(r - 112) // 16] = 1
+        r_onehot[(r - 112) // 19] = 1
         return torch.Tensor(ks_onehot + ex_onehot + r_onehot)
 
     @staticmethod
@@ -101,7 +101,7 @@ class Dataprocess():
         for ks, ex in zip(ks_list, ex_list):
             tmp.append(torch.tensor([ks, ex, r / 100]))
         ten = torch.cat(tmp, -1)
-        ten = torch.unsqueeze(ten, dim=0).view(-1, 20, 3)
+        ten = torch.unsqueeze(ten, dim=0).view(-1, 40, 3)
         return ten
 
     @staticmethod
@@ -141,7 +141,7 @@ class Dataprocess():
         # ex_onehot = [0 for _ in range(60)]
         r_onehot = [0 for _ in range(8)]
 
-        for i in range(20):
+        for i in range(40):
             start = i * 3
             if ks_list[i] != 0:
                 ks_onehot[start + ks_map[ks_list[i]]] = 1
@@ -158,11 +158,12 @@ def dataloader(ratio, batch_size, file_path):
     gpu = torch.tensor(gpu).reshape(totalnum, -1)
     d_list =torch.tensor(d_list).reshape(totalnum, -1)
     # feature = all_feats[:int(0.8*totalnum)]
-    train_dataset = TensorDataset(all_feats[:int(ratio[0] * totalnum)], cpu[:int(ratio[0] * totalnum)],d_list[:int(ratio[0] * totalnum)])
+    train_dataset = TensorDataset(all_feats[:int(ratio[0] * totalnum)], gpu[:int(ratio[0] * totalnum)],
+                                  d_list[:int(ratio[0] * totalnum)])
     valid_dataset = TensorDataset(all_feats[int(ratio[0] * totalnum):int((ratio[1]+ratio[0]) * totalnum)],
-                                  cpu[int(ratio[0] * totalnum):int((ratio[1]+ratio[0]) * totalnum)],
+                                  gpu[int(ratio[0] * totalnum):int((ratio[1]+ratio[0]) * totalnum)],
                                   d_list[int(ratio[0] * totalnum):int((ratio[1]+ratio[0]) * totalnum)])
-    test_dataset =  TensorDataset(all_feats[int((ratio[1]+ratio[0]) * totalnum):],cpu[int((ratio[1]+ratio[0]) * totalnum):],
+    test_dataset =  TensorDataset(all_feats[int((ratio[1]+ratio[0]) * totalnum):],gpu[int((ratio[1]+ratio[0]) * totalnum):],
                                   d_list[int((ratio[1]+ratio[0]) * totalnum):])
 
     train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True,drop_last=True)

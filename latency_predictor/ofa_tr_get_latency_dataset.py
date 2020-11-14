@@ -125,12 +125,17 @@ cpu_ava_delay = AverageMeter()
 resolution = [160, 176, 192, 208, 224]
 onnxpath = './onnxs/tmp.onnx'
 enginepath = './engine/tmp.trt'
-csv_f = open('./dataset/latency_dataset_tr_1w_resolution.csv', 'w', encoding='utf-8', newline='')
+csv_f = open('./dataset/latency_dataset_tr_debug.csv', 'w', encoding='utf-8', newline='')
 csv_writer = csv.writer(csv_f)
 csv_writer.writerow(['arch_config', 'gpu latency', 'cpu latency',])
 
 for _ in range(population_size):
     net_config, efficiency = finder.random_sample()
+    # net_config = {'wid': None, 'ks':
+    #     [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
+    #     'e': [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
+    #     'd': [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], 'r': [1024]}
+    net_config = {'wid':None,'ks': [3]*40,'e': [3]*40,'d':[2]*10,'r':[1024]}
     print(net_config, efficiency)
     child_pool.append(net_config)
     efficiency_pool.append(efficiency)
@@ -177,6 +182,8 @@ for _ in range(population_size):
         csv_array = [net_config, round(gpu_ava_delay.avg, 4), round(cpu_ava_delay.avg, 4)]
         csv_writer.writerow(csv_array)
         csv_f.flush()
+
+
 
 
 
