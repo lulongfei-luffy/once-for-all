@@ -1,6 +1,7 @@
 import os
 import torch
-import torch.nn as nn
+from archmanager.finder import myArchManager
+from archmanager.utils import getconfig,random_sample
 from torchvision import transforms, datasets
 import numpy as np
 import time
@@ -15,6 +16,8 @@ from ofa.tutorial import AccuracyPredictor, FLOPsTable, LatencyTable, EvolutionF
 import torch.backends.cudnn as cudnn
 import csv
 
+
+
 # set random seed
 TRT_LOGGER = trt.Logger()
 random_seed = 1
@@ -22,8 +25,9 @@ random.seed(random_seed)
 np.random.seed(random_seed)
 torch.manual_seed(random_seed)
 print('Successfully imported all packages and configured random seed to %d!'%random_seed)
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
+device = 'cuda:3' if torch.cuda.is_available() else 'cpu'
+
 cuda_available = torch.cuda.is_available()
 if cuda_available:
     torch.backends.cudnn.enabled = True
@@ -40,12 +44,11 @@ def get_engine(onnx_file_path):
     """Attempts to load a serialized engine if available, otherwise builds a new TensorRT engine and saves it."""
     # def build_engine():
     """Takes an ONNX file and creates a TensorRT engine to run inference with"""
+
     with trt.Builder(TRT_LOGGER) as builder, builder.create_network(
             common.EXPLICIT_BATCH) as network, trt.OnnxParser(network, TRT_LOGGER) as parser:
-        builder.max_workspace_size = 1 << 30  # 1G
+        builder.max_workspace_size = 1 << 32  # 4G
         builder.max_batch_size = 1
-        # Parse model file
-
         with open(onnx_file_path, 'rb') as model:
             print('Beginning ONNX file parsing')
             if not parser.parse(model.read()):
@@ -94,8 +97,9 @@ print('The Latency lookup table on %s is ready!' % target_hardware)
 # accuracy predictor
 accuracy_predictor = AccuracyPredictor(
     pretrained=True,
-    device='cuda:0' if cuda_available else 'cpu'
+    device='cuda:1' if cuda_available else 'cpu'
 )
+print('ready')
 
 latency_constraint = 50 # ms, suggested range [15, 33] ms
 P = 100  # The size of population in each generation
@@ -115,9 +119,7 @@ params = {
 # build the evolution finder
 finder = EvolutionFinder(**params)
 
-population = []  # (validation, sample, latency) tuples
-child_pool = []
-efficiency_pool = []
+# population = []  # (validation, sample, latency) tuples
 population_size = 10000
 
 gpu_ava_delay = AverageMeter()
@@ -129,16 +131,20 @@ csv_f = open('./dataset/latency_dataset_tr_debug.csv', 'w', encoding='utf-8', ne
 csv_writer = csv.writer(csv_f)
 csv_writer.writerow(['arch_config', 'gpu latency', 'cpu latency',])
 
-for _ in range(population_size):
-    net_config, efficiency = finder.random_sample()
-    # net_config = {'wid': None, 'ks':
-    #     [7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7],
-    #     'e': [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-    #     'd': [4, 4, 4, 4, 4, 4, 4, 4, 4, 4], 'r': [1024]}
-    net_config = {'wid':None,'ks': [3]*40,'e': [3]*40,'d':[2]*10,'r':[1024]}
-    print(net_config, efficiency)
-    child_pool.append(net_config)
-    efficiency_pool.append(efficiency)
+
+archmanager = myArchManager()
+
+net_config = random_sample(depths=archmanager.depths,kernel_sizes=archmanager.kernel_sizes,num_blocks=archmanager.num_blocks,
+                               expand_ratios=archmanager.expand_ratios,num_stages=archmanager.num_stages)
+configs = getconfig(archmanager.depths,archmanager.resolutions)
+# configs = getconfig([1,2,3,4], [4])
+for config in configs:
+    net_config['d'] = config[:-1]
+    net_config['r'] = [config[-1]]
+# net_config, efficiency = finder.random_sample()
+# net_config = {'wid':None,'ks': [3]*40,'e': [3]*40,'d':[1]*10,'r':[512]}
+# net_config = {'wid': None, 'ks': [7] * 40, 'e': [6] * 40, 'd': [4] * 10, 'r': [1024]}
+    print(net_config)
 
     data_loader.dataset.transform = transforms.Compose([
         transforms.Resize(int(math.ceil(int(net_config['r'][0])/0.875))),
@@ -149,7 +155,7 @@ for _ in range(population_size):
             std=[0.229, 0.224, 0.225]
         )])
     cudnn.benchmark = True
-    criterion = nn.CrossEntropyLoss().to(device)
+    # criterion = nn.CrossEntropyLoss().to(device)
     assert 'ks' in net_config and 'd' in net_config and 'e' in net_config
     assert len(net_config['ks']) == 40 and len(net_config['e']) == 40 and len(net_config['d']) == 10
 
@@ -170,7 +176,6 @@ for _ in range(population_size):
         # Set host input to the image. The common.do_inference function will copy the input to the GPU before executing.
         for i, (images, labels) in enumerate(data_loader):
             images, labels = images.numpy(), labels.numpy()
-            # images, labels = images.to(device), labels.to(device)
             inputs[0].host = images.astype(np.float32)
             t1 = time.time()
             trt_outputs = common.do_inference_v2(context, bindings=bindings, inputs=inputs, outputs=outputs, stream=stream)

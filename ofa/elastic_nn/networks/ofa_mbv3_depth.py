@@ -13,7 +13,7 @@ from ofa.imagenet_codebase.networks.mobilenet_v3 import MobileNetV3, MobileInver
 from ofa.imagenet_codebase.utils import make_divisible, int2list
 
 
-class OFAMobileNetV3(MobileNetV3):
+class OFAMobileNetV3_depth(MobileNetV3):
     """
     et = OFAMobileNetV3(
             dropout_rate=0, width_mult_list=1.2, ks_list=[3, 5, 7], expand_ratio_list=[3, 4, 6], depth_list=[2, 3, 4],
@@ -34,7 +34,12 @@ class OFAMobileNetV3(MobileNetV3):
         self.depth_list.sort()
 
         # base_stage_width = [16, 24, 40, 80, 112, 160, 960, 1280]
-        base_stage_width = [16, 24, 40, 80, 112, 160, 24, 40, 80, 112, 160,  960, 1280]
+        base_stage_width = [16,    24, 40, 80, 112, 160,    192, 224, 256, 320, 480,   960, 1280]
+        stride_stages = [1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2]
+        act_stages = ['relu', 'relu', 'relu', 'h_swish', 'h_swish', 'h_swish', 'relu', 'relu', 'h_swish', 'h_swish',
+                      'h_swish']
+        se_stages = [False, False, True, False, True, True, False, True, False, True, True]
+
         final_expand_width = [
             make_divisible(base_stage_width[-2] * max(self.width_mult_list), 8) for _ in self.width_mult_list
         ]
@@ -46,16 +51,13 @@ class OFAMobileNetV3(MobileNetV3):
         # act_stages = ['relu', 'relu', 'relu', 'h_swish', 'h_swish', 'h_swish']
         # se_stages = [False, False, True, False, True, True]
 
-        stride_stages = [1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2]
-        act_stages = ['relu', 'relu', 'relu', 'h_swish', 'h_swish', 'h_swish','relu', 'relu', 'h_swish', 'h_swish', 'h_swish']
-        se_stages = [False, False, True, False, True, True, False, True, False, True, True]
         if depth_list is None:
             n_block_list = [1, 2, 3, 4, 2, 3]
             self.depth_list = [4, 4]
             print('Use MobileNetV3 Depth Setting')
         else:
-            n_block_list = [1] + [max(self.depth_list)] * 10  # depth_list = [2,3,4]
-            # [1, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4, 2, 3, 4]
+            n_block_list = [1] + [max(self.depth_list)] * 10  # depth_list = [,12,3,4]
+            # [1, 4,4,4,4,..........]
         width_list = []
         for base_width in base_stage_width[:-2]:
             width = [make_divisible(base_width * width_mult, 8) for width_mult in self.width_mult_list]
@@ -127,19 +129,19 @@ class OFAMobileNetV3(MobileNetV3):
             classifier = DynamicLinearLayer(
                 in_features_list=last_channel, out_features=n_classes, bias=True, dropout_rate=dropout_rate
             )
-        super(OFAMobileNetV3, self).__init__(first_conv, blocks, final_expand_layer, feature_mix_layer, classifier)
+        super(OFAMobileNetV3_depth, self).__init__(first_conv, blocks, final_expand_layer, feature_mix_layer, classifier)
 
         # set bn param
         self.set_bn_param(momentum=bn_param[0], eps=bn_param[1])
 
         # runtime_depth
         self.runtime_depth = [len(block_idx) for block_idx in self.block_group_info]
-
+         # [4]*10
     """ MyNetwork required methods """
 
     @staticmethod
     def name():
-        return 'OFAMobileNetV3'
+        return 'OFAMobileNetV3_depth'
 
     def forward(self, x):
         # first conv
@@ -180,7 +182,7 @@ class OFAMobileNetV3(MobileNetV3):
     @property
     def config(self):
         return {
-            'name': OFAMobileNetV3.__name__,
+            'name': OFAMobileNetV3_depth.__name__,
             'bn': self.get_bn_param(),
             'first_conv': self.first_conv.config,
             'blocks': [
@@ -236,6 +238,7 @@ class OFAMobileNetV3(MobileNetV3):
         for i, d in enumerate(depth):
             if d is not None:
                 self.runtime_depth[i] = min(len(self.block_group_info[i]), d)
+                # decide the detailed depth
 
     def set_constraint(self, include_list, constraint_type='depth'):
         if constraint_type == 'depth':
@@ -391,4 +394,3 @@ class OFAMobileNetV3(MobileNetV3):
     def re_organize_middle_weights(self, expand_ratio_stage=0):
         for block in self.blocks[1:]:
             block.mobile_inverted_conv.re_organize_middle_weights(expand_ratio_stage)
-

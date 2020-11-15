@@ -215,7 +215,7 @@ def ofa_specialized(net_id, pretrained=True):
 
 def ofa_net(net_id, pretrained=True):
     from ofa.elastic_nn.modules.dynamic_op import DynamicSeparableConv2d
-    from ofa.elastic_nn.networks import OFAMobileNetV3, OFAProxylessNASNets
+    from ofa.elastic_nn.networks import OFAMobileNetV3, OFAProxylessNASNets,OFAMobileNetV3_depth
 
     DynamicSeparableConv2d.KERNEL_TRANSFORM_MODE = 1
     if net_id == 'ofa_proxyless_d234_e346_k357_w1.3':
@@ -227,8 +227,8 @@ def ofa_net(net_id, pretrained=True):
             dropout_rate=0, width_mult_list=1.0, ks_list=[3, 5, 7], expand_ratio_list=[3, 4, 6], depth_list=[2, 3, 4],
         )
     elif net_id == 'ofa_mbv3_d234_e346_k357_w1.2':
-        net = OFAMobileNetV3(
-            dropout_rate=0, width_mult_list=1.2, ks_list=[3, 5, 7], expand_ratio_list=[3, 4, 6], depth_list=[2, 3, 4],
+        net = OFAMobileNetV3_depth(
+            dropout_rate=0, width_mult_list=1.2, ks_list=[3, 5, 7], expand_ratio_list=[3, 4, 6], depth_list=[1, 2, 3, 4],
         )
     else:
         raise ValueError('Not supported: %s' % net_id)
