@@ -90,60 +90,42 @@ if cuda_available:
 else:
     print('Since GPU is not found in the environment, we skip all scripts related to ImageNet evaluation.')
 
-target_hardware = 'note10'
-latency_table = LatencyTable(device=target_hardware)
-print('The Latency lookup table on %s is ready!' % target_hardware)
-
-# accuracy predictor
-accuracy_predictor = AccuracyPredictor(
-    pretrained=True,
-    device='cuda:1' if cuda_available else 'cpu'
-)
-print('ready')
-
-latency_constraint = 50 # ms, suggested range [15, 33] ms
-P = 100  # The size of population in each generation
-N = 500  # How many generations of population to be searched
-r = 0.25  # The ratio of networks that are used as parents for next generation
-params = {
-    'constraint_type': target_hardware, # Let's do FLOPs-constrained search
-    'efficiency_constraint': latency_constraint,
-    'mutate_prob': 0.1, # The probability of mutation in evolutionary search
-    'mutation_ratio': 0.5, # The ratio of networks that are generated through mutation in generation n >= 2.
-    'efficiency_predictor': latency_table, # To use a predefined efficiency predictor.
-    'accuracy_predictor': accuracy_predictor, # To use a predefined accuracy_predictor predictor.
-    'population_size': P,
-    'max_time_budget': N,
-    'parent_ratio': r,
-}
-# build the evolution finder
-finder = EvolutionFinder(**params)
-
-# population = []  # (validation, sample, latency) tuples
-population_size = 10000
 
 gpu_ava_delay = AverageMeter()
 cpu_ava_delay = AverageMeter()
 resolution = [160, 176, 192, 208, 224]
-onnxpath = './onnxs/tmp.onnx'
-enginepath = './engine/tmp.trt'
-csv_f = open('./dataset/latency_dataset_tr_debug.csv', 'w', encoding='utf-8', newline='')
+onnxpath = './onnxs/tmp2.onnx'
+csv_f = open('./dataset/tmep.csv', 'w', encoding='utf-8', newline='')
 csv_writer = csv.writer(csv_f)
 csv_writer.writerow(['arch_config', 'gpu latency', 'cpu latency',])
 
 
 archmanager = myArchManager()
+# configs = getconfig(archmanager.depths,archmanager.resolutions)
+configs = []
+for item in csv.reader(open('latency_predictor/dataset/configs/high_latency_config1.csv', 'r')):
+    configs.append(list(map(int,item)))
 
-net_config = random_sample(depths=archmanager.depths,kernel_sizes=archmanager.kernel_sizes,num_blocks=archmanager.num_blocks,
-                               expand_ratios=archmanager.expand_ratios,num_stages=archmanager.num_stages)
-configs = getconfig(archmanager.depths,archmanager.resolutions)
-# configs = getconfig([1,2,3,4], [4])
 for config in configs:
-    net_config['d'] = config[:-1]
-    net_config['r'] = [config[-1]]
-# net_config, efficiency = finder.random_sample()
-# net_config = {'wid':None,'ks': [3]*40,'e': [3]*40,'d':[1]*10,'r':[512]}
-# net_config = {'wid': None, 'ks': [7] * 40, 'e': [6] * 40, 'd': [4] * 10, 'r': [1024]}
+    net_config = random_sample(depths=archmanager.depths, kernel_sizes=archmanager.kernel_sizes,
+                               num_blocks=archmanager.num_blocks,
+                               expand_ratios=archmanager.expand_ratios, num_stages=archmanager.num_stages)
+    net_config = {'wid': None,
+                  'ks': [7, 7, 7, 7, 5, 3, 5, 3, 5, 3, 7, 5, 7, 5, 3, 5, 5, 7, 5, 3, 5, 5, 5, 3, 5, 5, 3, 5, 3, 3, 3, 5, 3, 7, 3, 3, 3, 7, 5, 7],
+                  'e': [6, 6, 4, 3, 6, 4, 4, 6, 6, 4, 6, 3, 6, 4, 4, 6, 4, 3, 3, 3, 4, 4, 6, 4, 4, 6, 6, 6, 3, 6, 6, 6, 4, 4, 6, 6, 6, 3, 6, 6],
+                  'd': [4, 3, 3, 1, 4, 3, 2, 1, 3, 4],
+                  'r': [1024]}
+    # "{'wid': None,
+    # 'ks': [7, 7, 7, 7, 5, 3, 5, 3, 5, 3, 7, 5, 7, 5, 3, 5, 5, 7, 5, 3, 5, 5, 5, 3, 5, 5, 3, 5, 3, 3, 3, 5, 3, 7, 3, 3, 3, 7, 5, 7],
+    # 'e': [6, 6, 4, 3, 6, 4, 4, 6, 6, 4, 6, 3, 6, 4, 4, 6, 4, 3, 3, 3, 4, 4, 6, 4, 4, 6, 6, 6, 3, 6, 6, 6, 4, 4, 6, 6, 6, 3, 6, 6],
+    # 'd': [4, 3, 3, 1, 4, 3, 2, 1, 3, 4],
+    # 'r': [1024]}",44.3389,0
+
+    # config = [4,2,4,4,4,3,4,2,3,4,1024]
+    # config = [4]*10
+    # config.append(1024)
+    # net_config['d'] = config[:-1]
+    # net_config['r'] = [config[-1]]
     print(net_config)
 
     data_loader.dataset.transform = transforms.Compose([
@@ -155,7 +137,6 @@ for config in configs:
             std=[0.229, 0.224, 0.225]
         )])
     cudnn.benchmark = True
-    # criterion = nn.CrossEntropyLoss().to(device)
     assert 'ks' in net_config and 'd' in net_config and 'e' in net_config
     assert len(net_config['ks']) == 40 and len(net_config['e']) == 40 and len(net_config['d']) == 10
 
@@ -187,7 +168,6 @@ for config in configs:
         csv_array = [net_config, round(gpu_ava_delay.avg, 4), round(cpu_ava_delay.avg, 4)]
         csv_writer.writerow(csv_array)
         csv_f.flush()
-
 
 
 

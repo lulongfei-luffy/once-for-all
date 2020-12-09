@@ -60,8 +60,8 @@ def random_sample(num_stages, depths,num_blocks,expand_ratios,kernel_sizes):
     #     d.append(random.choice(depths, p=[0.25] * 4))
 
     for i in range(num_blocks):
-        e.append(random.choice(expand_ratios))
-        ks.append(random.choice(kernel_sizes))
+        e.append(random.choice(expand_ratios, p=[0.1, 0.45, 0.45]))
+        ks.append(random.choice(kernel_sizes, p=[0.1, 0.45, 0.45]))
 
     sample = {
         'wid': None,

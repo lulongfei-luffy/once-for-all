@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 
 # path = "./latency_dataset_2_1000.csv"
-path = './dataset/latency_dataset_2_10w.csv'
+path = './dataset/final_dataset/final_.csv'
 df = pd.read_csv(path)
 gpu = df.iloc[:,-2].values
 cpu = df.iloc[:,-1].values

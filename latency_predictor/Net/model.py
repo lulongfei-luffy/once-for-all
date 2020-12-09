@@ -6,10 +6,10 @@ from .data_process import *
 from torch.utils.data import DataLoader, Dataset,TensorDataset
 
 
-class latency_net(torch.nn.Module):
+class FC_net(torch.nn.Module):
     def __init__(self, para):
         n_feature, n_hid0, n_hid1, n_hid2, n_hid3, output = para[0], para[1], para[2],para[3], para[4], para[5]
-        super(latency_net,self).__init__()
+        super(FC_net,self).__init__()
         self.hidden0 = torch.nn.Linear(n_feature,n_hid0)
         self.hidden1 = torch.nn.Linear(n_hid0,n_hid1)
         self.hidden2 = torch.nn.Linear(n_hid1, n_hid2)

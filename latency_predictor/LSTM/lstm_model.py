@@ -13,7 +13,7 @@ class LstmRNN(nn.Module):
         super().__init__()
         self.d_list = d_list
         self.lstm = nn.LSTM(input_size, hidden_size, num_layers)  # utilize the LSTM model in torch.nn   1, 16, 1, 1
-        self.forwardCalculation = nn.Linear(hidden_size*20, output_size)
+        self.forwardCalculation = nn.Linear(hidden_size*40, output_size)
 
     # def forward(self, _x, d_list):
     #     self.d_list = d_list
